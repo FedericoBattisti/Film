@@ -1,0 +1,72 @@
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2rem;
+    font-style: oblique;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family
+    :'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    font-style: oblique;
+}
+
+.logo-custom{
+    width: 7%;
+    height: auto;
+}
+
+.sql-custom{
+    width: 70%;
+    height: auto;
+}
+
+.btn-custom:hover{
+    transform: scale(1.15);
+    transition: 0.3s ease-in-out;
+}
+
+.btn-custom{
+    transition: 0.3s ease-in-out;
+    background-color: #089EAF !important;
+    color: white !important;
+}
+
+.insegna-custom{
+    background-color: #089EAF;
+    color: white;
+    width: auto;
+}
+
+.form-control{
+    border: 1px solid darkorange;
+    color: darkorange;
+}
+
+.form-control:focus {
+    color: darkorange; 
+    outline: none; 
+    box-shadow: 0 0 5px darkorange;
+}
+
+.nav-custom{
+    transition: 0.2s ease-in-out;
+    border-bottom: 2px solid transparent;
+    padding: 10px;
+    color:black;
+    text-decoration: none;
+}
+.nav-custom:hover{
+    border-bottom:2px solid #089EAF;
+    transition: 0.2s ease-in-out;
+}
+
+.card-equal {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 450px;
+}
+.card-body {
+    flex: 1 1 auto;
+}
