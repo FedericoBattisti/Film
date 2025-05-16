@@ -1,51 +1,74 @@
 <x-layout>
-    <div class="container">
-        <div class="row justify-content-center mb-4">
-            <div class="col-12 text-center">
-                <h1 class="mb-4 insegna-custom">Registrati</h1>
-            </div>
-        </div>
-    </div>
     <div class="container my-5">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-6">
-                <form method="POST" action="{{ route('register') }}" class="p-4 border rounded shadow-sm bg-light">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nome utente</label>
-                        <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
-                            class="form-control @error('name') is-invalid @enderror">
-                        @error('name')
-                            <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
-                        @enderror
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow border-0 rounded-3">
+                    <div class="card-header bg-primary text-white text-center py-3">
+                        <h2 class="insegna-custom mb-0">Crea il tuo account</h2>
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Indirizzo e-mail</label>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" required
-                            class="form-control @error('email') is-invalid @enderror">
-                        @error('email')
-                            <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
-                        @enderror
+                    <div class="card-body p-4">
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+                            
+                            <div class="mb-4">
+                                <label for="name" class="form-label">Nome utente</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input id="name" type="text" name="name" value="{{ old('name') }}" 
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        placeholder="Il tuo nome utente" required autofocus>
+                                </div>
+                                @error('name')
+                                    <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="form-label">Indirizzo e-mail</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input id="email" type="email" name="email" value="{{ old('email') }}" 
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        placeholder="La tua email" required>
+                                </div>
+                                @error('email')
+                                    <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input id="password" type="password" name="password" 
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        placeholder="Crea una password sicura" required>
+                                </div>
+                                @error('password')
+                                    <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="password_confirmation" class="form-label">Conferma Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                                    <input id="password_confirmation" type="password" name="password_confirmation" 
+                                        class="form-control" placeholder="Ripeti la password" required>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-custom py-2">
+                                    <i class="fas fa-user-plus me-2"></i>Registrati
+                                </button>
+                            </div>
+                            
+                            <div class="mt-4 text-center">
+                                <p class="mb-0">Hai già un account? <a href="{{ route('login') }}" class="text-decoration-none fw-bold">Accedi ora</a></p>
+                            </div>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input id="password" type="password" name="password" required
-                            class="form-control @error('password') is-invalid @enderror">
-                        @error('password')
-                            <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="password_confirmation" class="form-label">Conferma Password</label>
-                        <input id="password_confirmation" type="password" name="password_confirmation" required
-                            class="form-control">
-                    </div>
-                    <div>
-                        <button type="submit" class="btn border shadow btn-white btn-custom w-100">Registrati</button>
-                    </div>
-                </form>
-                <div class="text-center mt-3">
-                    <a href="{{ route('login') }}">Hai già un account? Accedi</a>
                 </div>
             </div>
         </div>
