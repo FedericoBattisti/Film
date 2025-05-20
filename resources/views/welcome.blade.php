@@ -32,6 +32,8 @@
         </div>
     @endif
 
+    <livewire:gemini-chat />
+
     <!-- Caratteristiche -->
     <div class="container my-5 py-4">
         <div class="text-center mb-5">

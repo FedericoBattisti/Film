@@ -1,8 +1,10 @@
 <?php
 
+use App\Livewire\GeminiChat;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\PlatformController;
+
 
 Route::get('/', [PublicController::class, 'homepage'])->name('home');
 Route::get('/create', [PublicController::class, 'create'])->name('create');
@@ -20,6 +22,7 @@ Route::post('/platform/store', [PlatformController::class, 'store'])->name('plat
 Route::get('/platform/show/{platform}', [PlatformController::class, 'show'])->name('platform.show');
 Route::get('/movies/{movie}/platforms/edit', [PlatformController::class, 'editMoviePlatforms'])->name('movies.platforms.edit');
 Route::post('/movies/{movie}/platforms', [PlatformController::class, 'updateMoviePlatforms'])->name('movies.platforms.update');
+Route::view('/chat', 'chat')->name('chat.gemini');
 
 
 // Logica del CRUD (Create, Read, Update, Delete)
