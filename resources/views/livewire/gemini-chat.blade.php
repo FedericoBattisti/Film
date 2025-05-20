@@ -3,28 +3,26 @@
         <img src="{{ asset('gemini-brand.png') }}" alt="Gemini Logo" style="height:36px; width:auto;">
     </div>
     <div class="card-body d-flex flex-column" style="height: 400px; overflow-y: auto; background: #f8f9fa;">
-        {{-- Messaggi utente e risposta Gemini --}}
-        @if ($response)
+        @forelse ($messages as $msg)
             <div class="mb-3">
                 <div class="d-flex flex-column align-items-end">
                     <div class="bg-primary text-white rounded px-3 py-2 mb-1" style="max-width: 80%;">
-                        <span>{{ $lastPrompt ?? $prompt }}</span>
+                        <span>{{ $msg['user'] }}</span>
                     </div>
                     <small class="text-muted">Tu</small>
                 </div>
                 <div class="d-flex flex-column align-items-start mt-2">
                     <div class="bg-white border rounded px-3 py-2" style="max-width: 80%;">
-                        <span style="white-space: pre-line;">{{ $response }}</span>
+                        <span style="white-space: pre-line;">{{ $msg['gemini'] }}</span>
                     </div>
                     <small class="text-muted">Gemini</small>
                 </div>
             </div>
-        @else
+        @empty
             <div class="text-center text-muted my-auto" style="margin-top: 120px;">
-                <i class="fas fa-robot fa-2x mb-2"></i>
-                <div>Inizia la conversazione con Gemini!</div>
+                <img src="{{asset('gemini-logo.png')}}" class="img fluid" style="width: 150px; height:auto" alt="">
             </div>
-        @endif
+        @endforelse
     </div>
     <div class="card-footer bg-white border-0">
         <form wire:submit.prevent="sendPrompt" class="d-flex gap-2">

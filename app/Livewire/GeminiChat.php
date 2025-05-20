@@ -6,28 +6,8 @@ use Livewire\Component;
 
 class GeminiChat extends Component
 {
-    public $response = null;
     public $prompt = '';
-
-    public function mount()
-    {
-        // Esegui una chiamata di esempio solo per test (NON in produzione)
-        // In produzione, sposta la logica in un metodo chiamato da un evento Livewire
-        try {
-            // Assicurati che le classi Gemini siano autoloaded e configurate
-            $yourApiKey = env('GEMINI_API_KEY');
-            if ($yourApiKey) {
-                $client = \Gemini::client($yourApiKey);
-
-                $result = $client->generativeModel(model: 'gemini-2.0-flash')->generateContent('Hello');
-                $this->response = $result->text();
-            } else {
-                $this->response = 'API Key non configurata.';
-            }
-        } catch (\Throwable $e) {
-            $this->response = 'Errore: ' . $e->getMessage();
-        }
-    }
+    public $messages = []; // array di messaggi
 
     public function sendPrompt()
     {
@@ -40,13 +20,25 @@ class GeminiChat extends Component
             if ($yourApiKey) {
                 $client = \Gemini::client($yourApiKey);
                 $result = $client->generativeModel(model: 'gemini-2.0-flash')->generateContent($this->prompt);
-                $this->response = $result->text();
-                $this->prompt = ''; // Svuota il campo dopo la risposta
+                // Salva prompt e risposta nello storico
+                $this->messages[] = [
+                    'user' => $this->prompt,
+                    'gemini' => $result->text(),
+                ];
+                $this->prompt = '';
             } else {
-                $this->response = 'API Key non configurata.';
+                $this->messages[] = [
+                    'user' => $this->prompt,
+                    'gemini' => 'API Key non configurata.',
+                ];
+                $this->prompt = '';
             }
         } catch (\Throwable $e) {
-            $this->response = 'Errore: ' . $e->getMessage();
+            $this->messages[] = [
+                'user' => $this->prompt,
+                'gemini' => 'Errore: ' . $e->getMessage(),
+            ];
+            $this->prompt = '';
         }
     }
 
