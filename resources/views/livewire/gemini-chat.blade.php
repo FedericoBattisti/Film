@@ -1,8 +1,8 @@
-<div class="card shadow-sm rounded-3 my-4" style="max-width: 500px; margin: 0 auto;">
+<div class="card shadow-sm rounded-3 my-4" style="max-width: 900px; margin: 0 auto;">
     <div class="card-header bg-primary text-white d-flex align-items-center gap-2" style="min-height: 60px;">
         <img src="{{ asset('gemini-brand.png') }}" alt="Gemini Logo" style="height:36px; width:auto;">
     </div>
-    <div class="card-body d-flex flex-column" style="height: 400px; overflow-y: auto; background: #f8f9fa;">
+    <div class="card-body d-flex flex-column" style="height: 770px; overflow-y: auto; background: #f8f9fa;">
         @forelse ($messages as $msg)
             <div class="mb-3">
                 <div class="d-flex flex-column align-items-end">

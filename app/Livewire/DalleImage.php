@@ -9,6 +9,12 @@ class DalleImage extends Component
 {
     public $prompt = '';
     public $imageUrl = null;
+    public $history = [];
+
+    public function mount()
+    {
+        $this->history = session('dalle_history', []);
+    }
 
     public function generateImage()
     {
@@ -28,9 +34,22 @@ class DalleImage extends Component
 
             $data = $response->json();
             $this->imageUrl = $data['data'][0]['url'] ?? null;
+
+            // Salva nello storico
+            if ($this->imageUrl) {
+                $this->history[] = [
+                    'prompt' => $this->prompt,
+                    'url' => $this->imageUrl,
+                ];
+                // Aggiorna la sessione
+                session(['dalle_history' => $this->history]);
+            }
+
+            $this->prompt = '';
         } catch (\Throwable $e) {
             $this->imageUrl = null;
             session()->flash('error', 'Errore generazione immagine: ' . $e->getMessage());
+            $this->prompt = '';
         }
     }
 
