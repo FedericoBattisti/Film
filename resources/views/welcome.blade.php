@@ -32,7 +32,17 @@
         </div>
     @endif
 
-    <livewire:gemini-chat />
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <livewire:gemini-chat />
+            </div>
+            <div class="col-12 col-md-6">
+                <livewire:dalle-image />
+            </div>
+        </div>
+    </div>
+    
 
     <!-- Caratteristiche -->
     <div class="container my-5 py-4">
